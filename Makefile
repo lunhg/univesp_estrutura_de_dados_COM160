@@ -6,6 +6,6 @@ build.%:
 		g++ `echo $@ | cut -d. -f2`/$$name.cpp -`echo $@ | cut -d. -f3` -Wall -o bin/`echo $@ | cut -d. -f2`/$$name; \
 	done
 
-clean: clean.aula1 clean.aula3 clean.apoio2
+clean: clean.aula1 clean.aula3 clean.aula4 clean.apoio2
 
-build: build.aula1.O2 build.aula3.O2 build.apoio2.O2
+build: build.aula1.O2 build.aula3.O2 build.aula4.O2 build.apoio2.O2
