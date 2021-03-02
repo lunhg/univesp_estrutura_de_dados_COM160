@@ -1,0 +1,38 @@
+ss[a4paper,12pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[french]{babel}
+\usepackage{fullpage}
+
+\usepackage{tikz-uml}
+
+\sloppy
+\hyphenpenalty 10000000
+
+\title{GradeBook}
+\author{Guilherme Martins Lunhani}
+
+\begin{document}
+
+\maketitle
+
+\section{Diagrama de classe}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{umlpackage}{gradebook}
+\umlclass[]{GradeBook}{
+    - courseName : String
+}{
+    << constructor >> + GradeBook(name : String) \\
+    + setCourseName(name : String) : void \\
+    + getCourseName():  String \\
+    + displayMessage(): void
+}
+\end{umlpackage}
+
+\end{tikzpicture}
+\end{center}
+
+\end{document

@@ -3,7 +3,8 @@ clean.%:
 
 build.%:
 	@for name in $$(find `echo $@ | cut -d. -f2` -name '*.cpp' | cut -d. -f1 | cut -d/ -f 2); do \
-		g++ `echo $@ | cut -d. -f2`/$$name.cpp -`echo $@ | cut -d. -f3` -Wall -o bin/`echo $@ | cut -d. -f2`/$$name; \
+		echo [ $$(date) ]: `echo $@ | cut -d. -f2`/$$name.cpp -`echo $@ | cut -d. -f3` -Wall -o bin/`echo $@ | cut -d. -f2`/$$name; \
+		g++	`echo $@ | cut -d. -f2`/$$name.cpp -`echo $@ | cut -d. -f3` -Wall -o bin/`echo $@ | cut -d. -f2`/$$name; \
 	done
 
 clean: clean.aula1 clean.aula3 clean.aula4 clean.apoio2
