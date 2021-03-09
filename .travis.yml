@@ -29,9 +29,12 @@ script:
   - cmake --build .
   - ./ex0_hello_world
   - ./ex0_vetor_inteiros
-  - echo 1 >  integers.txt && echo 2 >> integers.txt
-  - ./ex1_integer_operations < integers.txt
+  - for in {0..1}; do echo $((1 + RANDOM % 15)) >> random.txt ; done
+  - ./ex1_integer_operations < random.txt
   - ./ex1_vetor_com_constante
-  - ./ex2_integer_comparision < integers.txt
+  - ./ex2_integer_comparision < random.txt
   - echo 10 | ./ex2_vetor_dinamico
+  - for in {0..7}; do echo $((1 + RANDOM % 15)) >> random.txt ; done
+  - ./ex3_integers_lesser_than_five < random.txt
+  - ./ex3_ponteiros_como_parametros
   - ./gradebook
