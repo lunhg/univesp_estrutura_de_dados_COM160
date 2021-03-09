@@ -6,6 +6,7 @@ int main() {
   int number2;
 
   std::cout << "Operações v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << std::endl;
+  std::cout << "" << std::endl;
   std::cout << "Digite o primeiro número: ";
   std::cin >> number1;
   std::cout << "Digite o segundo número: ";

@@ -27,4 +27,9 @@ script:
   - cd build
   - cmake ..
   - cmake --build .
-  - make test
+  - ./ex0_hello_world
+  - ./ex0_vetor_inteiros
+  - echo 1 >  integers.txt && echo 2 >> integers.txt
+  - ./ex1_integer_operations < integers.txt
+  - ./ex1_vetor_com_constante
+  - ./ex2_integer_comparision < integers.txt
