@@ -30,9 +30,9 @@ script:
   - touch integers.txt
   - touch vetor.txt
   - touch random.txt
-  - for in {0..1}; do echo $((1 + RANDOM % 15)) >> integers.txt ; done 
+  - for i in {0..1}; do echo $((1 + RANDOM % 15)) >> integers.txt ; done 
   - echo $((1 + RANDOM % 15)) >> vetor.txt
-  - for in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done
+  - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done
   - ./ex0_hello_world
   - ./ex0_vetor_inteiros
   - ./ex1_integer_operations < integers.txt
