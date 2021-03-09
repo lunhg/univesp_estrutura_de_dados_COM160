@@ -1,36 +1,30 @@
-language: cpp
+os: linux
+dist: xenial
+sudo: require
+
+language: 
+  - cpp
 
 compiler:
-    - gcc
+  - gcc
 
-jobs:
-  include:
-    - os: linux
-      
-      language: 
-        - cpp
-      
-      compiler:
-        - gcc
-      
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-10
-            - g++-10
-            - cmake
-      
-      arch: amd64
-      
-      env: 
-        - CMAKE_VERSION_MAJOR=3.10 CMAKE_VERSION_MINOR=0 
-      
-      before_script:
-        - mkdir build
-        - cd build
-        - cmake ..
-      script:
-        - cmake --build .
-        - make test
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-10
+      - g++-10
+      - cmake
+
+before_script:
+  - gcc --version
+  - g++ version
+  - cmake --version
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+  - make test
