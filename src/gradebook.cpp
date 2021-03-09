@@ -1,4 +1,5 @@
 #include <iostream>
+#include "UNIVESP_COM_160.h"
 #include "gradebook.h"
 
 using std::cout;
@@ -19,8 +20,9 @@ string GradeBook::getCourseName() {
     return courseName;
 }
 
+
 // exibe uma mensagem de boas-vindas
 void GradeBook::displayMessage() {
-    cout << "Welcome to the grade book for" << endl;
+    cout << "Welcome to the gradebook v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << endl;
     cout << "  " << getCourseName() << endl;
 }
