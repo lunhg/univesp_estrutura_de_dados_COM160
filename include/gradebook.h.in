@@ -14,7 +14,6 @@ class GradeBook {
         // função que obtém o nome do curso
         string getCourseName();
 
-
         // função que exibe uma mensagem de boas-vindas
         void displayMessage();
 
