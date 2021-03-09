@@ -33,3 +33,5 @@ script:
   - ./ex1_integer_operations < integers.txt
   - ./ex1_vetor_com_constante
   - ./ex2_integer_comparision < integers.txt
+  - echo 10 | ./ex2_vetor_dinamico
+  - ./gradebook
