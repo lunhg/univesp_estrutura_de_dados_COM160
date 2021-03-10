@@ -1,6 +1,13 @@
-os: linux
-dist: xenial
-sudo: require
+jobs:
+  include:
+    - os: linux
+      dist: trusty
+
+    - os: linux
+      dist: xenial
+
+    - os: linux
+      dist: focal
 
 language: 
   - cpp

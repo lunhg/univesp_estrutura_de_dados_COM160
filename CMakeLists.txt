@@ -14,13 +14,17 @@ set(EX3_INT_LES_T_F     src/ex3_integers_lesser_than_five.cpp)
 set(EX3_PONT_AS_PARAM   src/ex3_ponteiros_como_parametros.cpp)
 
 #set(TIME_SRC            src/time.cpp src/time_main.cpp)
-set(GRADEBOOK_SRC       src/gradebook.cpp src/gradebook_main.cpp)
+set(LIVRO_SRC_PATH      src/livro)
+set(LIVRO_INC_PATH      include/livro)
 
+set(GRADEBOOK_NAME      gradebook)
+set(GRADEBOOK_INC       ${LIVRO_INC_PATH}/${GRADEBOOK_NAME}.h.in ${GRADEBOOK_NAME}.h)
+set(GRADEBOOK_SRC       ${LIVRO_SRC_PATH}/${GRADEBOOK_NAME}.cpp ${LIVRO_SRC_PATH}/${GRADEBOOK_NAME}_main.cpp)
 
 # headers before MAKE build
 configure_file(include/${PROJECT_NAME}.h.in ${PROJECT_NAME}.h)
 #configure_file(include/time.h.in            time.h)
-configure_file(include/gradebook.h.in       gradebook.h)
+configure_file(${GRADEBOOK_INC})
 
 # Executables
 add_executable(ex0_hello_world               ${EX0_HELLO_WORLD_SRC})
@@ -32,7 +36,7 @@ add_executable(ex2_vetor_dinamico            ${EX2_VET_DIN_SRC})
 add_executable(ex3_integers_lesser_than_five ${EX3_INT_LES_T_F})
 add_executable(ex3_ponteiros_como_parametros ${EX3_PONT_AS_PARAM})
 #add_executable(time                    ${TIME_SRC})
-add_executable(gradebook                     ${GRADEBOOK_SRC})
+add_executable(${GRADEBOOK_NAME}             ${GRADEBOOK_SRC})
 
 # includes after MAKE build
 target_include_directories(ex0_hello_world               PUBLIC ${PROJECT_BINARY_DIR})
@@ -44,4 +48,4 @@ target_include_directories(ex2_vetor_dinamico            PUBLIC ${PROJECT_BINARY
 target_include_directories(ex3_integers_lesser_than_five PUBLIC ${PROJECT_BINARY_DIR})
 target_include_directories(ex3_ponteiros_como_parametros PUBLIC ${PROJECT_BINARY_DIR})
 #target_include_directories(time                     PUBLIC ${PROJECT_BINARY_DIR})
-target_include_directories(gradebook                     PUBLIC ${PROJECT_BINARY_DIR})
+target_include_directories(${GRADEBOOK_NAME}             PUBLIC ${PROJECT_BINARY_DIR})
