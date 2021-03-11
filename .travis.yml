@@ -48,7 +48,7 @@ script:
   - echo $((1 + RANDOM % 15)) >> vetor.txt
   - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done
   - |
-    if [ ${TRAVIS_OS_NAME} == "linux" ]; then \
+    if [ ${TRAVIS_OS_NAME} != "windows" ]; then \
       ./ex0_hello_world && \
       ./ex0_vetor_inteiros && \
       ./ex1_integer_operations < integers.txt && \
