@@ -58,13 +58,13 @@ script:
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then \
       echo "[ !!!Pasta atual!!! ]: $(pwd)" && \
-      ./ex0_hello_world.exe && \
-      ./ex0_vetor_inteiros.exe && \
-      ./ex1_integer_operations.exe < integers.txt && \
-      ./ex1_vetor_com_constante.exe && \
-      ./ex2_integer_comparision.exe < integers.txt && \
-      ./ex2_vetor_dinamico.exe < vetor.txt && \
-      ./ex3_integers_lesser_than_five.exe < random.txt && \
-      ./ex3_ponteiros_como_parametros.exe && \
-      ./gradebook.exe < integers.txt;
+      ./Debug/ex0_hello_world.exe && \
+      ./Debug/ex0_vetor_inteiros.exe && \
+      ./Debug/ex1_integer_operations.exe < integers.txt && \
+      ./Debug/ex1_vetor_com_constante.exe && \
+      ./Debug/ex2_integer_comparision.exe < integers.txt && \
+      ./Debug/ex2_vetor_dinamico.exe < vetor.txt && \
+      ./Debug/ex3_integers_lesser_than_five.exe < random.txt && \
+      ./Debug/ex3_ponteiros_como_parametros.exe && \
+      ./Debug/gradebook.exe < integers.txt;
     fi
