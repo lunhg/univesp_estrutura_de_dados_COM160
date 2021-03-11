@@ -42,12 +42,26 @@ script:
   - for i in {0..1}; do echo $((1 + RANDOM % 15)) >> integers.txt ; done 
   - echo $((1 + RANDOM % 15)) >> vetor.txt
   - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done
-  - ./ex0_hello_world
-  - ./ex0_vetor_inteiros
-  - ./ex1_integer_operations < integers.txt
-  - ./ex1_vetor_com_constante
-  - ./ex2_integer_comparision < integers.txt
-  - ./ex2_vetor_dinamico < vetor.txt
-  - ./ex3_integers_lesser_than_five < random.txt
-  - ./ex3_ponteiros_como_parametros
-  - ./gradebook < integers
+  - |-
+      if [ ${TRAVIS_OS_NAME == "linux" } ]; then \
+    ./ex0_hello_world && \
+    ./ex0_vetor_inteiros && \
+    ./ex1_integer_operations < integers.txt && \
+    ./ex1_vetor_com_constante && \
+    ./ex2_integer_comparision < integers.txt && \
+    ./ex2_vetor_dinamico < vetor.txt && \
+    ./ex3_integers_lesser_than_five < random.txt && \
+    ./ex3_ponteiros_como_parametros && \
+    ./gradebook < integes.txt
+  - |-
+      if [ ${TRAVIS_OS_NAME == "windows" } ]; then \
+    ./ex0_hello_world.exe && \
+    ./ex0_vetor_inteiros.exe && \
+    ./ex1_integer_operations.exe < integers.txt && \
+    ./ex1_vetor_com_constante.exe && \
+    ./ex2_integer_comparision.exe < integers.txt && \
+    ./ex2_vetor_dinamico.exe < vetor.txt && \
+    ./ex3_integers_lesser_than_five.exe < random.txt && \
+    ./ex3_ponteiros_como_parametros.exe && \
+    ./gradebook.exe < integes.txt
+
