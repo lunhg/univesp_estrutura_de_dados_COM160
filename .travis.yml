@@ -40,9 +40,12 @@ script:
   - touch integers.txt
   - touch vetor.txt
   - touch random.txt
+  - touch gradebook.txt
   - for i in {0..1}; do echo $((1 + RANDOM % 15)) >> integers.txt ; done 
   - echo $((1 + RANDOM % 15)) >> vetor.txt
-  - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done
+  - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done 
+  - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> gradebook.txt ; done
+  - echo "-1" >> gradebook.txt
   - |
     if [ ${TRAVIS_OS_NAME} != "windows" ]; then \
       ./ex0_hello_world && \
@@ -53,7 +56,7 @@ script:
       ./ex2_vetor_dinamico < vetor.txt && \
       ./ex3_integers_lesser_than_five < random.txt && \
       ./ex3_ponteiros_como_parametros && \
-      ./gradebook < integers.txt;
+      ./gradebook < gradebook.txt;
     fi
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then \
@@ -66,5 +69,5 @@ script:
       ./Debug/ex2_vetor_dinamico.exe < vetor.txt && \
       ./Debug/ex3_integers_lesser_than_five.exe < random.txt && \
       ./Debug/ex3_ponteiros_como_parametros.exe && \
-      ./Debug/gradebook.exe < integers.txt;
+      ./Debug/gradebook.exe < gradebook.txt;
     fi

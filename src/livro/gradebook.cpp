@@ -1,9 +1,13 @@
 #include <iostream>
+#include <iomanip>
 #include "UNIVESP_COM_160.h"
 #include "gradebook.h"
 
 using std::cout;
+using std::cin;
 using std::endl;
+using std::fixed;
+using std::setprecision;
 
 // o construtor inicializa courseName com a string fornecida como argumento
 GradeBook::GradeBook(string name) {
@@ -35,18 +39,26 @@ void GradeBook::determineClassAverage() {
     int total;
     int gradeCounter;
     int grade;
-    int average;
+    float average;
     total = 0;
-    gradeCounter = 1;
-    while(gradeCounter <= 10) {
-        cout << "Enter grade: ";
-        std::cin >> grade;
+    gradeCounter = 0;
+
+    cout << "Entre com uma nota -1 para sair" << endl;
+    cin >> grade;
+
+    while(grade != -1) {
         total = total + grade;
         gradeCounter = gradeCounter + 1;
+
+        cout << "Entre com uma nota ou -1 para sair" << endl;
+        cin >> grade;
     }
-    average = total / 10;
-    cout  << "\nTotal: " << total << endl;
-    cout << "Média:" << average << endl;
+
+    if(gradeCounter !=0) {
+        average = static_cast<double>(total) / gradeCounter;
+        cout  << "\nTotal: " << total << endl;
+        cout << "Média: " << setprecision(2) << fixed << average << endl;
+    } else {
+        cout << "Nenhuma nota adicionada";
+    }
 }
-
-
