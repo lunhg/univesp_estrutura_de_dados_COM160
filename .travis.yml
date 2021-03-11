@@ -18,10 +18,6 @@ language:
 compiler:
   - gcc
 
-cache:
-  directories:
-    - ./build
-
 addons:
   apt:
     sources:
