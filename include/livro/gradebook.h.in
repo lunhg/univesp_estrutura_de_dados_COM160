@@ -17,6 +17,8 @@ class GradeBook {
         // função que exibe uma mensagem de boas-vindas
         void displayMessage();
 
+        void determineClassAverage();
+
     private:
 
         //nome do curso

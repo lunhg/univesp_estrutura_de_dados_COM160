@@ -9,6 +9,8 @@ jobs:
     - os: linux
       dist: focal
 
+    - os: windows
+
 language: 
   - cpp
 
@@ -48,4 +50,4 @@ script:
   - ./ex2_vetor_dinamico < vetor.txt
   - ./ex3_integers_lesser_than_five < random.txt
   - ./ex3_ponteiros_como_parametros
-  - ./gradebook
+  - ./gradebook < integers
