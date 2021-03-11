@@ -57,6 +57,7 @@ script:
     fi
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then \
+      echo "[ !!!Pasta atual!!! ]: $(pwd)" && \
       ./ex0_hello_world.exe && \
       ./ex0_vetor_inteiros.exe && \
       ./ex1_integer_operations.exe < integers.txt && \
