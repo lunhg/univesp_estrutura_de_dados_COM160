@@ -2,12 +2,20 @@ jobs:
   include:
     - os: linux
       dist: trusty
+      arch:
+        - amd64
+        - arm64
 
     - os: linux
       dist: xenial
+      arch:
+        - amd64
+        - arm64
 
     - os: linux
       dist: focal
+        - amd64
+        - arm64
 
     - os: windows
     
