@@ -37,23 +37,30 @@ set(EX4_TIME_SRC        ${EX4_SRC}/${EX4_TIME_NAME}.cpp ${EX4_SRC}/${EX4_TIME_NA
 # Variáveis livro exe
 set(LIVRO_SRC_PATH      src/livro)
 set(LIVRO_INC_PATH      include/livro)
+
+# Variaveis de nome
 set(GRADEBOOK_NAME      gradebook)
 set(ANALYSIS_NAME       analysis)
+set(JUROS_NAME          juros)
 
 # Variáveis livro src
 set(ANALYSIS_INC        ${LIVRO_INC_PATH}/${ANALYSIS_NAME}.h.in  ${ANALYSIS_NAME}.h)
 set(GRADEBOOK_INC       ${LIVRO_INC_PATH}/${GRADEBOOK_NAME}.h.in ${GRADEBOOK_NAME}.h)
+set(JUROS_H             ${LIVRO_INC_PATH}/${JUROS_NAME}.h.in     ${JUROS_NAME}.h)
 set(GRADEBOOK_SRC       ${LIVRO_SRC_PATH}/${GRADEBOOK_NAME}.cpp  ${LIVRO_SRC_PATH}/${GRADEBOOK_NAME}_main.cpp)
 set(ANALYSIS_SRC        ${LIVRO_SRC_PATH}/${ANALYSIS_NAME}.cpp   ${LIVRO_SRC_PATH}/${ANALYSIS_NAME}_main.cpp)
+set(JUROS_SRC           ${LIVRO_SRC_PATH}/${JUROS_NAME}.cpp      ${LIVRO_SRC_PATH}/${JUROS_NAME}_main.cpp)
 
 # headers before MAKE build
 configure_file(include/${PROJECT_NAME}.h.in ${PROJECT_NAME}.h)
 #configure_file(include/time.h.in            time.h)
 
 # Configure headers
-configure_file(${EX4_TIME_H})
+#configure_file(${EX4_TIME_H})
 configure_file(${GRADEBOOK_INC})
 configure_file(${ANALYSIS_INC})
+configure_file(${EX4_TIME_H})
+configure_file(${JUROS_H})
 
 # Executables
 add_executable(ex0_hello_world               ${EX0_HELLO_WORLD_SRC})
@@ -67,7 +74,7 @@ add_executable(ex3_ponteiros_como_parametros ${EX3_PONT_AS_PARAM})
 add_executable(${EX4_TIME_NAME}              ${EX4_TIME_SRC})
 add_executable(${GRADEBOOK_NAME}             ${GRADEBOOK_SRC})
 add_executable(${ANALYSIS_NAME}              ${ANALYSIS_SRC})
-
+add_executable(${JUROS_NAME}                 ${JUROS_SRC})
 
 # includes after MAKE build
 target_include_directories(ex0_hello_world               PUBLIC ${PROJECT_BINARY_DIR})
@@ -81,3 +88,4 @@ target_include_directories(ex3_ponteiros_como_parametros PUBLIC ${PROJECT_BINARY
 target_include_directories(${EX4_TIME_NAME}              PUBLIC ${PROJECT_BINARY_DIR})
 target_include_directories(${GRADEBOOK_NAME}             PUBLIC ${PROJECT_BINARY_DIR})
 target_include_directories(${ANALYSIS_NAME}              PUBLIC ${PROJECT_BINARY_DIR})
+target_include_directories(${JUROS_NAME}              PUBLIC ${PROJECT_BINARY_DIR})

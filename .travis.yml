@@ -69,7 +69,8 @@ script:
       ./ex3_ponteiros_como_parametros && \
       ./tempo && \
       ./gradebook < gradebook.txt && \
-      ./analysis < analysis.txt;
+      ./analysis < analysis.txt && \
+      ./juros;
     fi
   - |
     if [ ${TRAVIS_OS_NAME} == "windows" ]; then \
@@ -84,5 +85,6 @@ script:
       ./Debug/ex3_ponteiros_como_parametros.exe && \ 
       ./Debug/tempo && \
       ./Debug/gradebook.exe < gradebook.txt && \
-      ./Debug/analysis.exe < analysis.txt;
+      ./Debug/analysis.exe < analysis.txt && \
+      ./Debug/juros.exe;
     fi

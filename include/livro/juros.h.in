@@ -1,0 +1,15 @@
+class Juros {
+
+    private:
+        double amount;
+        double principal;
+        double rate;
+
+    public:
+        Juros(double principal, double rate=0.5);
+        void setPrincipal(double principal);
+        void setRate(double rate);
+        double getAmountForYear(int years);
+        double getPrincipal() const;
+        double getRate() const;
+};
