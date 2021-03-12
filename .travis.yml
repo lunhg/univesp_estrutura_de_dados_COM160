@@ -67,6 +67,7 @@ script:
       ./ex2_vetor_dinamico < vetor.txt && \
       ./ex3_integers_lesser_than_five < random.txt && \
       ./ex3_ponteiros_como_parametros && \
+      ./tempo && \
       ./gradebook < gradebook.txt && \
       ./analysis < analysis.txt;
     fi
@@ -80,7 +81,8 @@ script:
       ./Debug/ex2_integer_comparision.exe < integers.txt && \
       ./Debug/ex2_vetor_dinamico.exe < vetor.txt && \
       ./Debug/ex3_integers_lesser_than_five.exe < random.txt && \
-      ./Debug/ex3_ponteiros_como_parametros.exe && \
+      ./Debug/ex3_ponteiros_como_parametros.exe && \ 
+      ./tempo && \
       ./Debug/gradebook.exe < gradebook.txt && \
       ./Debug/analysis.exe < analysis.txt;
     fi
