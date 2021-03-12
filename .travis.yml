@@ -82,7 +82,7 @@ script:
       ./Debug/ex2_vetor_dinamico.exe < vetor.txt && \
       ./Debug/ex3_integers_lesser_than_five.exe < random.txt && \
       ./Debug/ex3_ponteiros_como_parametros.exe && \ 
-      ./tempo && \
+      ./Debug/tempo && \
       ./Debug/gradebook.exe < gradebook.txt && \
       ./Debug/analysis.exe < analysis.txt;
     fi
