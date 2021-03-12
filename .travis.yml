@@ -50,7 +50,7 @@ script:
   - touch vetor.txt
   - touch random.txt
   - touch gradebook.txt
-  - toutc analysis.txt
+  - touch analysis.txt
   - for i in {0..1}; do echo $((1 + RANDOM % 15)) >> integers.txt ; done 
   - echo $((1 + RANDOM % 15)) >> vetor.txt
   - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done 
