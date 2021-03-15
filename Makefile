@@ -2,6 +2,8 @@ clean:
 	@rm -rf build
 	@rm -rf lib
 
+all: lib build test
+
 build:
 	@mkdir -p build && cd build && cmake .. && cmake --build . && cd ..
 
@@ -24,17 +26,17 @@ lib.analysis:
 	@echo $$((1 + RANDOM % 15)) >> lib/integers.txt
 
 test: 
-	make run.simple 
-	make run.io
+	@$(MAKE) test.simple 
+	@$(MAKE) test.io
 
-run.simple: 
-	make run.simple.hello_world 
-	make run.simple.vetor_inteiros 
+test.simple: 
+	@$(MAKE) test.simple.hello_world 
+	@$(MAKE) test.simple.vetor_inteiros 
 
-run.io: 
-	make run.io.integer_comparison.integers
+test.io: 
+	$(MAKE) test.io.integer_comparison.integers
 
-run.simple.%:
+test.simple.%:
 	@echo "--Running $$(echo $@ | cut -d. -f3)"
 	@echo ""
 	@if [ $$(uname) == "Linux" ]; then \
@@ -49,7 +51,7 @@ run.simple.%:
 	@echo ""
 
 
-run.io.%:
+test.io.%:
 	@echo "--Running $$(echo $@ | cut -d. -f3) < lib/$$(echo $@ | cut -d. -f4).txt"
 	@echo ""
 	@if [ $$(uname) == "Linux" ]; then ./build/$$(echo $@ | cut -d. -f3) < lib/$$(echo $@ | cut -d. -f4).txt; fi
