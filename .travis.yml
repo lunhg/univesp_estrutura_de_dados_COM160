@@ -34,6 +34,7 @@ before_script:
   - cmake --version
 
 script:
+  - if [ ${TRAVIS_OS_NAME} == "Windows" ]; then choco install make; fi
   - make lib
   - make build
   - make test
