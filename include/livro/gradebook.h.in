@@ -17,9 +17,16 @@ class GradeBook {
         // função que exibe uma mensagem de boas-vindas
         void displayMessage();
 
-        void determineClassAverage();
+        // insere notas através da STDIO
+        void inputGrades();
+
+        // apresenta relatório
+        void displayGradeReport();
 
     private:
+
+        // Nota máxima do estudante
+        int studentMaximum;
 
         //nome do curso
         string courseName;

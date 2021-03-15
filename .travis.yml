@@ -2,25 +2,17 @@ jobs:
   include:
     - os: linux
       dist: trusty
-      arch:
-        - amd64
-        - arm64
 
     - os: linux
       dist: xenial
-      arch:
-        - amd64
-        - arm64
 
     - os: linux
       dist: focal
-      arch:
-        - amd64
-        - arm64
 
-    - os: windows
-    
+    - os: windows 
+
     - os: osx
+
 language: 
   - cpp
 
@@ -42,49 +34,7 @@ before_script:
   - cmake --version
 
 script:
-  - mkdir build
-  - cd build
-  - cmake ..
-  - cmake --build .
-  - touch integers.txt
-  - touch vetor.txt
-  - touch random.txt
-  - touch gradebook.txt
-  - touch analysis.txt
-  - for i in {0..1}; do echo $((1 + RANDOM % 15)) >> integers.txt ; done 
-  - echo $((1 + RANDOM % 15)) >> vetor.txt
-  - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> random.txt ; done 
-  - for i in {0..9}; do echo $((1 + RANDOM % 15)) >> gradebook.txt ; done
-  - echo "-1" >> gradebook.txt 
-  - for i in {0..9}; do echo $((1 + RANDOM % 2)) >> analysis.txt ; done
-  - |
-    if [ ${TRAVIS_OS_NAME} != "windows" ]; then \
-      ./ex0_hello_world && \
-      ./ex0_vetor_inteiros && \
-      ./ex1_integer_operations < integers.txt && \
-      ./ex1_vetor_com_constante && \
-      ./ex2_integer_comparision < integers.txt && \
-      ./ex2_vetor_dinamico < vetor.txt && \
-      ./ex3_integers_lesser_than_five < random.txt && \
-      ./ex3_ponteiros_como_parametros && \
-      ./tempo && \
-      ./gradebook < gradebook.txt && \
-      ./analysis < analysis.txt && \
-      ./juros;
-    fi
-  - |
-    if [ ${TRAVIS_OS_NAME} == "windows" ]; then \
-      echo "[ !!!Pasta atual!!! ]: $(pwd)" && \
-      ./Debug/ex0_hello_world.exe && \
-      ./Debug/ex0_vetor_inteiros.exe && \
-      ./Debug/ex1_integer_operations.exe < integers.txt && \
-      ./Debug/ex1_vetor_com_constante.exe && \
-      ./Debug/ex2_integer_comparision.exe < integers.txt && \
-      ./Debug/ex2_vetor_dinamico.exe < vetor.txt && \
-      ./Debug/ex3_integers_lesser_than_five.exe < random.txt && \
-      ./Debug/ex3_ponteiros_como_parametros.exe && \ 
-      ./Debug/tempo && \
-      ./Debug/gradebook.exe < gradebook.txt && \
-      ./Debug/analysis.exe < analysis.txt && \
-      ./Debug/juros.exe;
-    fi
+  - make lib
+  - make build
+  - make test
+

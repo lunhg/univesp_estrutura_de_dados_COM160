@@ -5,8 +5,9 @@ using std::cout;
 using std::endl;
 
 int main() {
-    GradeBook gradebook1("CS101 Introdução à programação C++");
-    gradebook1.displayMessage();
-    gradebook1.determineClassAverage();
+    GradeBook gradebook("CS101 Introdução à programação C++");
+    gradebook.displayMessage();
+    gradebook.inputGrades();
+    gradebook.displayGradeReport();
     return 0;
 }

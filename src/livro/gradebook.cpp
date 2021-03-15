@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 #include "UNIVESP_COM_160.h"
 #include "gradebook.h"
 
@@ -11,7 +12,11 @@ using std::setprecision;
 
 // o construtor inicializa courseName com a string fornecida como argumento
 GradeBook::GradeBook(string name) {
+    cout << "==============" << endl;
+    cout << "GradeBook v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << endl;
+    cout << "==============" << endl;
     setCourseName(name);
+    studentMaximum = 0;
 }
 
 // função para configurar o nome do curso
@@ -20,7 +25,7 @@ void GradeBook::setCourseName(string name) {
         courseName = name;
     } else {
         courseName = name.substr(0,25);
-        cout << "Nome \"" << name << "\" excede o tamanho máximo (25).\n" << endl;
+        cout << "WARN: Nome \"" << name << "\" excede o tamanho máximo (25).\n" << endl;
     }
 }
 
@@ -31,34 +36,30 @@ string GradeBook::getCourseName() {
 
 // exibe uma mensagem de boas-vindas
 void GradeBook::displayMessage() {
-    cout << "Welcome to the gradebook v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << endl;
-    cout << "  " << getCourseName() << endl;
+    cout << "Bem vindo ao curso " << getCourseName() << endl;
 }
 
-void GradeBook::determineClassAverage() {
-    int total;
-    int gradeCounter;
-    int grade;
-    float average;
-    total = 0;
-    gradeCounter = 0;
+void GradeBook::inputGrades() {
+    int grade1;
+    int grade2;
+    int grade3;
 
-    cout << "Entre com uma nota -1 para sair" << endl;
-    cin >> grade;
+    cout << "Entre com as 1a nota: ";
+    cin >> grade1;
+    cout << endl;
 
-    while(grade != -1) {
-        total = total + grade;
-        gradeCounter = gradeCounter + 1;
+    cout << "Entre com as 2a nota: ";
+    cin >> grade2;
+    cout << endl;
 
-        cout << "Entre com uma nota ou -1 para sair" << endl;
-        cin >> grade;
-    }
+    cout << "Entre com as 3a nota: ";
+    cin >> grade3;
+    cout << endl;
 
-    if(gradeCounter !=0) {
-        average = static_cast<double>(total) / gradeCounter;
-        cout  << "\nTotal: " << total << endl;
-        cout << "Média: " << setprecision(2) << fixed << average << endl;
-    } else {
-        cout << "Nenhuma nota adicionada";
-    }
+    studentMaximum = fmax(grade1, grade2, grade3);
+}
+
+void GradeBook::displayGradeReport(){
+    cout << "Relatório das notas: " << endl;
+    cout << "  Nota máxima: " << studentMaximum;
 }
