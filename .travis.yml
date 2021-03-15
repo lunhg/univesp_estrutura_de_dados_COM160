@@ -31,10 +31,11 @@ addons:
 before_script:
   - gcc --version
   - g++ --version
-  - cmake --version
+  - cmake --version 
+  - if [ ${TRAVIS_OS_NAME} == "windows" ]; then choco install make; fi
+  - make --version
 
 script:
-  - if [ ${TRAVIS_OS_NAME} == "Windows" ]; then choco install make; fi
   - make lib
   - make build
   - make test
