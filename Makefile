@@ -7,54 +7,37 @@ all: lib build test
 build:
 	@mkdir -p build && cd build && cmake .. && cmake --build . && cd ..
 
-lib: lib.build lib.integers lib.vetor lib.gradebook lib.analysis
+lib: lib.build lib.integer_operations lib.integer_comparison lib.vetor_dinamico
 
 lib.build:
 	@mkdir -p lib
 
-lib.integers: 
-	@for i in {0..1}; do echo $$((1 + RANDOM % 15)) >> lib/integers.txt; done
+lib.integer_operations: 
+	@for i in {0..1}; do echo $$((1 + RANDOM % 15)) >> lib/integer_operations.txt; done
 
-lib.vetor:
-	@echo $$((1 + RANDOM % 15)) >> lib/integers.txt
+lib.integer_comparison:
+	@for i in {0..1}; do echo $$((1 + RANDOM % 15)) >> lib/integer_comparison.txt; done
 
-lib.gradebook:
-	@for i in {0..2}; do echo $$((1 + RANDOM % 10)) >> lib/gradebook.txt; \
-	done
-
-lib.analysis:
-	@echo $$((1 + RANDOM % 15)) >> lib/integers.txt
+lib.vetor_dinamico:
+	@echo $$((1 + RANDOM % 15)) >> lib/vetor_dinamico.txt
 
 test: 
-	@$(MAKE) test.simple 
-	@$(MAKE) test.io
+	$(MAKE) test.exemplos
 
-test.simple: 
-	@$(MAKE) test.simple.hello_world 
-	@$(MAKE) test.simple.vetor_inteiros 
+test.exemplos:
+	@for i in {0..2}; do $(MAKE) test.exemplos.$$i && echo "" && echo "--------------------" && echo ""; done
 
-test.io: 
-	$(MAKE) test.io.integer_comparison.integers
-
-test.simple.%:
-	@echo "--Running $$(echo $@ | cut -d. -f3)"
+test.exemplos.0: 
+	@$(BUILD_DIR)/exemplos/0/hello_world
 	@echo ""
-	@if [ $$(uname) == "Linux" ]; then \
-		./build/$$(echo $@ | cut -d. -f3); \
-	fi
-	@if [ $$(uname) == "Darwin" ]; then \
-		./build/$$(echo $@ | cut -d. -f3); \
-	fi
-	@if [ $$(uname) == "Windows" ]; then \
-		./Debug/build/$$(echo $@ | cut -d. -f3); \
-	fi
-	@echo ""
+	@$(BUILD_DIR)/exemplos/0/vetor_inteiros
 
+test.exemplos.1: 
+	@$(BUILD_DIR)/exemplos/1/integer_operations	< lib/integer_operations.txt
+	@echo ""
+	@$(BUILD_DIR)/exemplos/1/vetor_com_constante 
 
-test.io.%:
-	@echo "--Running $$(echo $@ | cut -d. -f3) < lib/$$(echo $@ | cut -d. -f4).txt"
+test.exemplos.2: 
+	@$(BUILD_DIR)/exemplos/2/integer_comparison < lib/integer_comparison.txt
 	@echo ""
-	@if [ $$(uname) == "Linux" ]; then ./build/$$(echo $@ | cut -d. -f3) < lib/$$(echo $@ | cut -d. -f4).txt; fi
-	@if [ $$(uname) == "Darwin" ]; then	./build/$$(echo $@ | cut -d. -f3) < lib/$$(echo $@ | cut -d. -f4).txt; fi
-	@if [ $$(uname) == "Windows" ]; then ./Debug/build/$$(echo $@ | cut -d. -f3) < lib/$$(echo $@ | cut -d. -f4).txt; fi
-	@echo ""
+	@$(BUILD_DIR)/exemplos/2/vetor_dinamico < lib/vetor_dinamico.txt

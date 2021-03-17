@@ -3,9 +3,13 @@
 
 const int NUM_ELEM = 10;
 
-int main() {
-    std::cout << "Vetor de inteiros v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << "\n";
+using std::cout;
+using std::endl;
 
+int main() {
+    cout << "========================" << endl;   
+    cout << "Vetor com constante v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR <<  endl;
+    cout << "========================" << endl;   
     int c[NUM_ELEM];
     for (int i = 0; i < NUM_ELEM; i++) {
         c[i] = 2*i;

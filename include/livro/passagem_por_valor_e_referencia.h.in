@@ -1,0 +1,6 @@
+class PassagemValRef {
+
+    public:
+        int  squareByValue(int);
+        void squareByReference(int &);
+}

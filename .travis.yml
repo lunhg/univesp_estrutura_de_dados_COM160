@@ -32,7 +32,15 @@ before_script:
   - gcc --version
   - g++ --version
   - cmake --version 
-  - if [ ${TRAVIS_OS_NAME} == "windows" ]; then choco install make; fi
+  - |
+    if [ ${TRAVIS_OS_NAME} == "windows" ]; then \
+      export BUILD_DIR=Debug/build \
+      choco install make; \
+    fi
+  - |
+    if [ ${TRAVIS_OS_NAME} != "windows" ]; then \
+      export BUILD_DIR=build; \
+    fi
   - make --version
 
 script:

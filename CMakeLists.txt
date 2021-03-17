@@ -1,76 +1,89 @@
 cmake_minimum_required(VERSION 3.9.2)
 project(UNIVESP_COM_160 VERSION 0.1)
 
-# Variáveis
+set(THE_PROJECT_H include/${PROJECT_NAME}.h.in ${PROJECT_NAME}.h)
+
+# Variáveis de compilator
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Pastas principais
 set(EX_CXX_SRC    src/exemplos)
 set(AULAS_CXX_SRC src/aulas)
 set(LIVRO_CXX_SRC src/livro)
 set(AULAS_H_IN    include/aulas)
 set(LIVRO_H_IN    include/livro)
 
-# EXEMPLO 0
-set(HELLO_WORLD_NAME hello_world)
-set(VETOR_INT_NAME   vetor_inteiros)
-set(HELLO_WORLD_SRC  ${EX_CXX_SRC}/0/${HELLO_WORLD_NAME}.cpp)
-set(VETOR_INT_SRC    ${EX_CXX_SRC}/0/${VETOR_INT_NAME}.cpp)
+#header principal com versao do projeto
+configure_file(${THE_PROJECT_H})
 
-# EXEMPLO 1
-set(INT_OP_NAME      integer_operations)
-set(VETOR_CONST_NAME vetor_com_constante)
-set(INT_OP_SRC       ${EX_CXX_SRC}/1/${INT_OP_NAME}.cpp)
-set(VETOR_CONST_SRC  ${EX_CXX_SRC}/1/${VETOR_CONST_NAME}.cpp)
+# Define funcoes gerais para build
+function(configure_simple DIRNAME FILENAME)
+    message("---- Configuring ${FILENAME}:")
+    message("     ${DIRNAME}/${FILENAME}.cpp")
+    message("     --> build/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${FILENAME}")
+    add_executable(${FILENAME} ${DIRNAME}/${FILENAME}.cpp)
+    target_include_directories(${FILENAME} PUBLIC ${PROJECT_BINARY_DIR})
+endfunction()
+
+
+function(configure_class_main DIRNAME DIRNAME_H FILENAME)
+    message("---- Configuring ${FILENAME}: ")
+    message("     ${DIRNAME_H}/${FILENAME}.h.in")
+    message("     ${DIRNAME}/${FILENAME}.cpp")
+    message("     ${DIRNAME}/${FILENAME}_main.cpp")
+    message("     --> build/${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${FILENAME}")
+    configure_file(${DIRNAME_H}/${FILENAME}.h.in ${FILENAME}.h)
+    add_executable(${FILENAME} ${DIRNAME}/${FILENAME}.cpp ${DIRNAME}/${FILENAME}_main.cpp)
+    target_include_directories(${FILENAME} PUBLIC ${PROJECT_BINARY_DIR})
+endfunction()
+
+##########
+# EXEMPLOS
+##########
+
+# Define diretorios de exemplos
+set(EX_DIRS_LIST 0 1 2 3 4 5)
+foreach(N IN LISTS EX_DIRS_LIST)
+    set(EX_${N}_DIR ${EX_CXX_SRC}/${N})
+endforeach()
+
+# Exemplos 0
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY exemplos/0)
+configure_simple(${EX_0_DIR} hello_world)
+configure_simple(${EX_0_DIR} vetor_inteiros)
+
+# Exemplos 1
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY exemplos/1)
+configure_simple(${EX_1_DIR} integer_operations)
+configure_simple(${EX_1_DIR} vetor_com_constante)
 
 # EXEMPLO 2
-set(INT_COMP_NAME    integer_comparison)
-set(VETOR_DIN_NAME   vetor_dinamico)
-set(INT_COMP_SRC     ${EX_CXX_SRC}/2/${INT_COMP_NAME}.cpp)
-set(VETOR_DIN_SRC    ${EX_CXX_SRC}/2/${VETOR_DIN_NAME}.cpp)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY exemplos/2)
+configure_simple(${EX_2_DIR} integer_comparison)
+configure_simple(${EX_2_DIR} vetor_dinamico)
 
 # EXEMPLO 3
-set(INT_LTF_NAME      integers_lesser_than_five)
-set(PONT_C_PARAM_NAME ponteiros_como_parametros)
-set(INT_LTF_SRC       ${EX_CXX_SRC}/3/${INT_LTF_NAME}.cpp)
-set(PONT_C_PARAM_SRC  ${EX_CXX_SRC}/3/${PONT_C_PARAM_NAME}.cpp)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY exemplos/3)
+configure_simple(${EX_3_DIR} integers_lesser_than_five)
+configure_simple(${EX_3_DIR} ponteiros_como_parametros)
 
 # EXEMPLO 4
-set(INT_SUM_SERIE_NAME integers_sum_serie)
-set(VETOR_C_PARAM_NAME vetores_como_parametros)
-set(INT_SUM_SERIE_SRC  ${EX_CXX_SRC}/4/${INT_SUM_SERIE_NAME}.cpp)
-set(VETOR_C_PARAM_SRC  ${EX_CXX_SRC}/4/${VETOR_C_PARAM_NAME}.cpp)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY exemplos/4)
+configure_simple(${EX_4_DIR} integers_sum_serie)
+configure_simple(${EX_4_DIR} vetores_como_parametros)
 
-# LISTA EXEMPLOS
-set(LISTA_EXEMPLOS
-    HELLO_WORLD
-    VETOR_INT
-    INT_OP
-    VETOR_CONST
-    INT_COMP
-    VETOR_DIN
-    INT_LTF
-    PONT_C_PARAM
-    INT_SUM_SERIE
-    VETOR_C_PARAM)
+#######
+# AULAS
+#######
+
+set(EX_AULA_LIST 0 1 2 3 4 5)
+foreach(N IN LISTS EX_AULA_LIST)
+    set(AULA_${N}_DIR ${AULAS_CXX_SRC}/${N})
+    set(AULA_${N}_H ${AULAS_H_IN}/${N})
+endforeach()
 
 # AULA 4
-set(TIME_NAME     tempo)
-set(TIME_CXX_SRC  ${AULAS_CXX_SRC}/4)
-set(TIME_H_SRC    ${AULAS_H_IN}/4)
-set(TIME_H        ${TIME_H_SRC}/${TIME_NAME}.h.in ${TIME_NAME}.h)
-set(TIME_SRC      ${TIME_CXX_SRC}/${TIME_NAME}.cpp ${TIME_CXX_SRC}/${TIME_NAME}_main.cpp)
-
-set(LISTA_AULAS
-    TIME)
-
-
-# headers before MAKE build
-configure_file(include/${PROJECT_NAME}.h.in ${PROJECT_NAME}.h)
-configure_file(${TIME_H})
-
-foreach(NAME IN LISTS LISTA_EXEMPLOS LISTA_AULAS)
-    message("Generating ${${NAME}_NAME}:\t\t${${NAME}_SRC}")
-    add_executable(${${NAME}_NAME} ${${NAME}_SRC})
-    target_include_directories(${${NAME}_NAME} PUBLIC ${PROJECT_BINARY_DIR})
-endforeach()
+#set(TIME_NAME     tempo)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY aulas/4)
+configure_class_main(${AULA_4_DIR} ${AULA_4_H} tempo)
