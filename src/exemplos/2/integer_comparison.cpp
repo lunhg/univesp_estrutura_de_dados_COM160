@@ -2,13 +2,17 @@
 #include "UNIVESP_COM_160.h"
 
 using std::cout;
+using std::cin;
+using std::endl;
 
 int main() {
     int number1;
     int number2;
-    
-    std::cout << "Comparações v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << std::endl;
-  
+
+    cout << "================" << endl;
+    cout << "Comparações v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << std::endl; 
+    cout << "================" << endl;
+
     cout << "Digite o primeiro número: ";
     std::cin >> number1;
     cout << "Digite o segundo número: ";

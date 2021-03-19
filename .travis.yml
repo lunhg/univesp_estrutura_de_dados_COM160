@@ -2,16 +2,26 @@ jobs:
   include:
     - os: linux
       dist: trusty
+      env:
+        - BUILD_DIR=build
 
     - os: linux
       dist: xenial
-
+      env:
+        - BUILD_DIR=build
+    
     - os: linux
-      dist: focal
-
-    - os: windows 
+      dist: focal 
+      env:
+        - BUILD_DIR=build
 
     - os: osx
+      env:
+        - BUILD_DIR=build
+
+    - os: windows  
+      env:
+        - BUILD_DIR=Debug/build
 
 language: 
   - cpp
@@ -28,19 +38,16 @@ addons:
       - g++
       - cmake
 
+after_install:
+  - |
+    if [ ${TRAVIS_OS_NAME} == "windows" ]; \
+      then choco install make; \
+    fi
+
 before_script:
   - gcc --version
   - g++ --version
   - cmake --version 
-  - |
-    if [ ${TRAVIS_OS_NAME} == "windows" ]; then \
-      export BUILD_DIR=Debug/build \
-      choco install make; \
-    fi
-  - |
-    if [ ${TRAVIS_OS_NAME} != "windows" ]; then \
-      export BUILD_DIR=build; \
-    fi
   - make --version
 
 script:

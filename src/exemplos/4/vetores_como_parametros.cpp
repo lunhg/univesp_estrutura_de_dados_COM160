@@ -1,7 +1,9 @@
 #include <iostream>
+#include "UNIVESP_COM_160.h"
 
-void modifica_vetor_sintaxe_1(int b[], int num_elem)
-{
+using namespace std;
+
+void modifica_vetor_sintaxe_1(int b[], int num_elem){
   for (int i = 0; i < num_elem; i++){
     b[i] = b[i] * 2;
   }
@@ -26,9 +28,12 @@ void vetor_const_sintaxe_2(const int b[], int num_elem)
 
 
 const int NUM_ELEM = 10;
-int main()
-{
-  // Alocação Estática
+int main(){
+    
+    cout << "===========================" << endl;
+    cout << "Vetores como parametros v" << UNIVESP_COM_160_VERSION_MAJOR << "." << UNIVESP_COM_160_VERSION_MINOR << endl; 
+    cout << "===========================" << endl;
+    // Alocação Estática
   int c[NUM_ELEM] = {1,2,3,4,5,6,7,8,9,10};
 
   // Alocação Dinâmica
@@ -44,7 +49,7 @@ int main()
   modifica_vetor_sintaxe_2(d, NUM_ELEM);
 
   for (int i = 0; i < NUM_ELEM; i++){
-    std::cout << i << " : " << c[i] << " , " << d[i] << std::endl;
+    cout << "c[" << i << "] = " << c[i] << "; d[" << i << "] = " << d[i] << endl;
   }
   return 0;
 }
