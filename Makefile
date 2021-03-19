@@ -36,7 +36,9 @@ test:
 	$(MAKE) test.exemplos
 
 test.exemplos:
-	@for i in {0..4}; do $(MAKE) test.exemplos.$$i && echo "" && echo "--------------------" && echo ""; done
+	@for i in {0..4}; do \
+		$(MAKE) test.exemplos.$$i && echo "" && echo "--------------------" && echo ""; \
+	done
 	@echo "DONE"
 
 test.exemplos.0: 
@@ -54,12 +56,10 @@ test.exemplos.2:
 	@echo ""
 	@$(BUILD_DIR)/exemplos/2/vetor_dinamico < lib/vetor_dinamico.txt
 
-
 test.exemplos.3: 
 	@$(BUILD_DIR)/exemplos/3/integers_lesser_than_five < lib/integers_lesser_than_five.txt
 	@echo ""
 	@$(BUILD_DIR)/exemplos/3/ponteiros_como_parametros
-
 
 test.exemplos.4: 
 	@$(BUILD_DIR)/exemplos/4/integers_sum_serie < lib/integers_sum_serie.txt
