@@ -2,26 +2,16 @@ jobs:
   include:
     - os: linux
       dist: trusty
-      env:
-        - BUILD_DIR=build
-
+    
     - os: linux
       dist: xenial
-      env:
-        - BUILD_DIR=build
     
     - os: linux
       dist: focal 
-      env:
-        - BUILD_DIR=build
 
     - os: osx
-      env:
-        - BUILD_DIR=build
 
     - os: windows  
-      env:
-        - BUILD_DIR=Debug/build
 
 language: 
   - cpp
@@ -48,7 +38,15 @@ before_script:
   - cmake --version 
   - make --version
 
-script:
+script: 
+  - |
+    if [ ${TRAVIS_OS_NAME} != "windows" ]; \
+      export BUILD_DIR=$(pwd)/build; \
+    fi 
+  - |
+    if [ ${TRAVIS_OS_NAME} == "windows" ]; \
+      export BUILD_DIR=$(pwd)/Debug/build; \
+    fi
   - make lib
   - make build
   - make test

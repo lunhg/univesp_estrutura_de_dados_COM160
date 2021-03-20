@@ -5,8 +5,11 @@ using std::string;
 class GradeBook {
 
     public:
+
+        const static int students = 10;
+
         // construtor que inicializa courseName
-        GradeBook(string);
+        GradeBook(string, const int gradesArray[]);
 
         // função que configura o nome do curso
         void setCourseName(string);
@@ -17,17 +20,22 @@ class GradeBook {
         // função que exibe uma mensagem de boas-vindas
         void displayMessage();
 
-        // insere notas através da STDIO
-        void inputGrades();
+        void processGrades();
 
-        // apresenta relatório
-        void displayGradeReport();
+        int getMinimum();
+
+        int getMaximum();
+
+        double getAverage();
+
+        void outputBarChart();
+
+        void outputGrades();
 
     private:
 
-        // Nota máxima do estudante
-        int studentMaximum;
-
         //nome do curso
         string courseName;
+
+        int grades[students];
 };

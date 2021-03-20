@@ -8,8 +8,14 @@ build:
 	@mkdir -p build && cd build && cmake .. && cmake --build . && cd ..
 
 lib: 
-	@for recipe in build integer_operations integer_comparison vetor_dinamico integers_lesser_than_five integers_sum_serie; do \
-		$(MAKE) lib.$$recipe; \
+	@for recipe in build \
+		integer_operations \
+		integer_comparison \
+		vetor_dinamico \
+		integers_lesser_than_five \
+		integers_sum_serie \
+		integers_average; do \
+			$(MAKE) lib.$$recipe; \
 	done
 
 lib.build:
@@ -32,14 +38,29 @@ lib.integers_sum_serie:
 	@echo $$((10 + RANDOM %  100)) >> lib/integers_sum_serie.txt
 	@echo $$((1 + RANDOM % 5)) >> lib/integers_sum_serie.txt
 
+lib.integers_average:
+	@for i in {0..9}; do echo $$((1 + RANDOM % 100)) >> lib/integers_average.txt; done
+	@echo EOF >> lib/integers_average.txt
+
 test: 
 	$(MAKE) test.exemplos
+	$(MAKE) test.aulas
+	$(MAKE) test.livro
 
 test.exemplos:
 	@for i in {0..4}; do \
 		$(MAKE) test.exemplos.$$i && echo "" && echo "--------------------" && echo ""; \
 	done
-	@echo "DONE"
+
+test.aulas:
+	@for i in {4..5}; do \
+		$(MAKE) test.aulas.$$i && echo "" && echo "--------------------" && echo ""; \
+	done
+
+test.livro:	
+	@for i in gradebook; do \
+		$(MAKE) test.livro.$$i && echo "" && echo "--------------------" && echo ""; \
+	done
 
 test.exemplos.0: 
 	@$(BUILD_DIR)/exemplos/0/hello_world
@@ -65,3 +86,15 @@ test.exemplos.4:
 	@$(BUILD_DIR)/exemplos/4/integers_sum_serie < lib/integers_sum_serie.txt
 	@echo ""
 	@$(BUILD_DIR)/exemplos/4/vetores_como_parametros
+
+test.aulas.4:
+	@$(BUILD_DIR)/aulas/4/tempo
+	@echo ""
+
+test.aulas.5:
+	@$(BUILD_DIR)/aulas/5/integers_average < lib/integers_average.txt
+	@echo ""
+
+test.livro.gradebook:
+	@$(BUILD_DIR)/livro/gradebook
+	@echo ""

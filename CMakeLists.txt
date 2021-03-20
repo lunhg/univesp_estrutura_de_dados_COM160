@@ -77,7 +77,7 @@ configure_simple(${EX_4_DIR} vetores_como_parametros)
 # AULAS
 #######
 
-set(EX_AULA_LIST 0 1 2 3 4 5)
+set(EX_AULA_LIST 4 5)
 foreach(N IN LISTS EX_AULA_LIST)
     set(AULA_${N}_DIR ${AULAS_CXX_SRC}/${N})
     set(AULA_${N}_H ${AULAS_H_IN}/${N})
@@ -87,3 +87,25 @@ endforeach()
 #set(TIME_NAME     tempo)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY aulas/4)
 configure_class_main(${AULA_4_DIR} ${AULA_4_H} tempo)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY aulas/5)
+configure_simple(${AULA_5_DIR} integers_average)
+
+########
+# LIVROS
+########
+set(EX_LIVRO_LIST 7)
+foreach(N IN LISTS EX_LIVRO_LIST)
+    set(LIVRO_${N}_DIR ${LIVRO_CXX_SRC}/${N})
+    set(LIVRO_${N}_H   ${LIVRO_H_IN}/${N})
+endforeach()
+
+# CAP 7
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY livro/7)
+configure_simple(${LIVRO_7_DIR} vetor)
+configure_simple(${LIVRO_7_DIR} vetor_inicializado)
+configure_simple(${LIVRO_7_DIR} vetor_aleatorio)
+
+# Gradebook
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY livro)
+configure_class_main(${LIVRO_CXX_SRC} ${LIVRO_H_IN} gradebook)
